@@ -1,5 +1,8 @@
 # mintr
 
+## Code update in progress, so stay tuned.  
+
+
 ## Project setup
 ```
 npm install
