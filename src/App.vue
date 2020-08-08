@@ -1,60 +1,92 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld/>
-    </v-main>
-  </v-app>
+  <div id="app">
+    <top-nav></top-nav>
+    <router-view></router-view>
+    <footer-nav></footer-nav>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import TopNav from "./components/TopNav";
+import FooterNav from "./components/Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import mxt from "./utils/mxt/mxt";
+import {tokenAddr} from "./utils/mxt/constant";
 
 export default {
-  name: 'App',
-
+  name: 'app',
   components: {
-    HelloWorld,
+    FooterNav,
+    TopNav
   },
-
-  data: () => ({
-    //
-  }),
-};
+  mounted() {
+    mxt.opt.load(tokenAddr)
+  }
+}
 </script>
+
+<style>
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  background-color: #0c0b17 !important;
+}
+#app {
+  font-family: 'FZQingKeBenYueSongS-R-GB', PingFang SC, 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ffffff;
+}
+
+/* container width set 1280px */
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+.row {
+  max-width: 1280px;
+  margin: 0 auto !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #DFAF57 !important;
+}
+.swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+/* ant design */
+.ant-modal-content {
+  background-color: rgb(28, 26, 40) !important;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(0, 167, 230);
+  border-image: initial;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in 0s;
+  color: rgb(194, 193, 225) !important;
+  font-family: apercu-medium, PingFang SC, 'Avenir', Helvetica, Arial, sans-serif;
+}
+.ant-modal-footer {
+  border-top: 1px solid rgb(0, 167, 230) !important;
+}
+.ant-btn {
+  background-color: transparent !important;
+  height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgb(0, 167, 230) !important;
+  border-image: initial !important;
+  padding: 2px 20px 0;
+  border-radius: 20px !important;
+  transition: all 0.1s ease-in 0s !important;
+  text-decoration: none !important;
+  color: #c2c2de !important;
+}
+</style>
